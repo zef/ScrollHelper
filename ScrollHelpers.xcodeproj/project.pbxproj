@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8D809A8B19E5084F0088DD75 /* ScrollHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 8D809A8A19E5084F0088DD75 /* ScrollHelpers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8D809A9519E5084F0088DD75 /* ScrollHelpersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D809A9419E5084F0088DD75 /* ScrollHelpersTests.swift */; };
+		8D809A9F19E508720088DD75 /* ScrollHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D809A9E19E508720088DD75 /* ScrollHelper.swift */; };
+		8D809AA019E508CD0088DD75 /* ScrollHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D809A9E19E508720088DD75 /* ScrollHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +20,7 @@
 		8D809A9019E5084F0088DD75 /* ScrollHelpersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrollHelpersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D809A9319E5084F0088DD75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D809A9419E5084F0088DD75 /* ScrollHelpersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollHelpersTests.swift; sourceTree = "<group>"; };
+		8D809A9E19E508720088DD75 /* ScrollHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +62,7 @@
 		8D809A8719E5084F0088DD75 /* ScrollHelpers */ = {
 			isa = PBXGroup;
 			children = (
+				8D809A9E19E508720088DD75 /* ScrollHelper.swift */,
 				8D809A8A19E5084F0088DD75 /* ScrollHelpers.h */,
 				8D809A8819E5084F0088DD75 /* Supporting Files */,
 			);
@@ -196,6 +200,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D809A9F19E508720088DD75 /* ScrollHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D809AA019E508CD0088DD75 /* ScrollHelper.swift in Sources */,
 				8D809A9519E5084F0088DD75 /* ScrollHelpersTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,6 +304,7 @@
 		8D809A9919E5084F0088DD75 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -307,12 +314,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		8D809A9A19E5084F0088DD75 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
