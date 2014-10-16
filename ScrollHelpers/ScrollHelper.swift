@@ -8,25 +8,18 @@
 import UIKit
 import Foundation
 
-//
-//  ScrollHelper.swift
-//  ScrollTriggers
-//
-//  Created by Josef Houssney on 10/7/14.
-//  Copyright (c) 2014 Made By Kiwi. All rights reserved.
-//
-
-import UIKit
-import Foundation
-
 struct ScrollHelper {
     enum Direction {
-        case In, Out, All
+        case Ascending, Descending, Any
+    }
+
+    enum Side {
+        case In, Out, Any
         // just realized could add these with trigger distances too.
         // Something like this:
         // case InAt(CGFloat)
         // case OutAt(CGFloat)
-        // case AllAt(CGFloat, CGFloat)
+        // case AnyAt(CGFloat, CGFloat)
         // I was hoping to use the same name with an optional arg,
         // but that doesn't seem to be supported
     }
@@ -39,7 +32,7 @@ struct ScrollHelper {
         }
     }
     var targetOffset: CGFloat = 0
-    var direction = Direction.All
+    var side = Side.Any
 
     // should be write only or use a function or something
     // don't have time to figure it out right now...
@@ -54,6 +47,34 @@ struct ScrollHelper {
     var triggerDistanceIn: CGFloat = 0
     var triggerDistanceOut: CGFloat = 0
 
+    // this does not store a trigger that is set once, but is meant to be called after setting the offset
+    func triggerAt(location: CGFloat, _ block: (Direction) -> (), direction: Direction = .Any) {
+        var valueChanged = self.previousOffset != self.offset
+        var valuesSpanLocation = (self.previousOffset < location) ^ (self.offset < location)
+        var valueTouchesLocation = self.previousOffset == location || self.offset == location
+
+        if  valueChanged && (valuesSpanLocation || valueTouchesLocation) {
+            var currentDirection = scrollDirection()
+            switch direction {
+            case .Ascending:
+                if scrollDirection() == .Ascending {
+                    block(scrollDirection())
+                }
+            case .Descending:
+                if scrollDirection() == .Descending {
+                    block(scrollDirection())
+                }
+            case .Any:
+                block(scrollDirection())
+            }
+        }
+    }
+
+    func scrollDirection() -> Direction {
+        return self.previousOffset < self.offset ? .Ascending : .Descending
+    }
+
+
     // returns the number of points from the target location
     // negative numbers indicate that the target has not been reached
     // positive numbers indicate the distance past the target
@@ -61,8 +82,8 @@ struct ScrollHelper {
         return offset - targetOffset
     }
 
-    func percentage(_ customDirection: Direction? = nil) -> CGFloat {
-        var direction = customDirection == nil ? self.direction : customDirection!
+    func percentage(_ customSide: Side? = nil) -> CGFloat {
+        var side = customSide == nil ? self.side : customSide!
         var distance = distanceToTarget()
 
         var percentage = CGFloat(0)
@@ -74,17 +95,17 @@ struct ScrollHelper {
 
         percentage = max(percentage, 0)
 
-        switch direction {
+        switch side {
         case .In:
             return distance > 0.0 ? 1 : percentage
         case .Out:
             return distance < 0.0 ? 1 : percentage
-        case .All:
+        case .Any:
             return percentage
         }
     }
 
-    func reversePercentage(_ customDirection: Direction? = nil) -> CGFloat {
-        return 1 - percentage(customDirection)
+    func reversePercentage(_ customSide: Side? = nil) -> CGFloat {
+        return 1 - percentage(customSide)
     }
 }
