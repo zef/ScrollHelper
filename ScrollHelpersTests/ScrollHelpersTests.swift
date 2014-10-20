@@ -9,13 +9,14 @@ import UIKit
 import XCTest
 
 class ScrollHelpersTests: XCTestCase {
-        var helper = ScrollHelper()
+    
+    var helper = ScrollHelper()
 
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         helper.targetOffset = 100
-        helper.triggerDistance = helper.targetOffset/2
+        helper.triggerDistance = helper.targetOffset / 2
         helper.side = .Any
     }
 
@@ -138,6 +139,7 @@ class ScrollHelpersTests: XCTestCase {
         helper.offset = 10
         XCTAssertEqual(helper.scrollDirection(), ScrollHelper.Direction.Descending, "Scroll direction should be descending")
     }
+
     func testTriggers() {
         let ascending = ScrollHelper.Direction.Ascending
         let descending = ScrollHelper.Direction.Descending
@@ -184,8 +186,8 @@ class ScrollHelpersTests: XCTestCase {
 
 //    func testPerformanceExample() {
 //        // This is an example of a performance test case.
-////        self.measureBlock() {
-////            // Put the code you want to measure the time of here.
-////        }
+//        self.measureBlock() {
+//            // Put the code you want to measure the time of here.
+//        }
 //    }
 }
