@@ -1,6 +1,5 @@
 //
 //  ScrollHelper.swift
-//  ScrollTriggers
 //
 //  Created by Zef Houssney on 10/7/14.
 //

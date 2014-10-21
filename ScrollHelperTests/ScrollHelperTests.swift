@@ -1,6 +1,6 @@
 //
-//  ScrollHelpersTests.swift
-//  ScrollHelpersTests
+//  ScrollHelperTests.swift
+//  ScrollHelperTests
 //
 //  Created by Zef Houssney on 10/7/14.
 //
@@ -8,8 +8,8 @@
 import UIKit
 import XCTest
 
-class ScrollHelpersTests: XCTestCase {
-    
+class ScrollHelperTests: XCTestCase {
+
     var helper = ScrollHelper()
 
     override func setUp() {
