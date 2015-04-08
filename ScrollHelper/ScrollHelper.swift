@@ -37,7 +37,7 @@ struct ScrollHelper {
     // don't have time to figure it out right now...
     var triggerDistance: CGFloat? = 0 {
         didSet {
-            if let distance = triggerDistance? {
+            if let distance = triggerDistance {
                 triggerDistanceIn = distance
                 triggerDistanceOut = distance
             }
@@ -48,9 +48,9 @@ struct ScrollHelper {
 
     // this does not store a trigger that is set once, but is meant to be called 
     // each time after setting the offset, like in scrollViewDidScroll
-    func triggerAt(location: CGFloat, _ block: (Direction) -> (), direction: Direction = .Any) {
+    func triggerAt(location: CGFloat, _ block: ((Direction) -> ()), direction: Direction = .Any) {
         var valueChanged = self.previousOffset != self.offset
-        var valuesSpanLocation = (self.previousOffset < location) ^ (self.offset < location)
+        var valuesSpanLocation = (self.previousOffset < location) != (self.offset < location)
         var valueTouchesLocation = self.previousOffset == location || self.offset == location
 
         if  valueChanged && (valuesSpanLocation || valueTouchesLocation) {
