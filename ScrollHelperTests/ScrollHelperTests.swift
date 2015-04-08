@@ -27,75 +27,75 @@ class ScrollHelperTests: XCTestCase {
 
     func testDistance() {
         helper.offset = 0
-        XCTAssertEqual(helper.distanceToTarget(), -100)
+        XCTAssertEqual(helper.distanceToTarget(), CGFloat(-100))
 
         helper.offset = 25
-        XCTAssertEqual(helper.distanceToTarget(), -75)
+        XCTAssertEqual(helper.distanceToTarget(), CGFloat(-75))
 
         helper.offset = 100
-        XCTAssertEqual(helper.distanceToTarget(), 0)
+        XCTAssertEqual(helper.distanceToTarget(), CGFloat(0))
 
         helper.offset = 125
-        XCTAssertEqual(helper.distanceToTarget(), 25)
+        XCTAssertEqual(helper.distanceToTarget(), CGFloat(25))
     }
 
     func testPercentageForBothSides() {
         helper.offset = 0
-        XCTAssertEqual(helper.percentage(), 0)
+        XCTAssertEqual(helper.percentage(), CGFloat(0))
 
         helper.offset = 90
         XCTAssertEqualWithAccuracy(helper.percentage(), 0.8, 0.001)
 
         helper.offset = 100
-        XCTAssertEqual(helper.percentage(), 1)
+        XCTAssertEqual(helper.percentage(), CGFloat(1))
 
         helper.offset = 110
         XCTAssertEqualWithAccuracy(helper.percentage(), 0.8, 0.001)
 
         helper.offset = 150
-        XCTAssertEqual(helper.percentage(), 0)
+        XCTAssertEqual(helper.percentage(), CGFloat(0))
 
         helper.offset = 1000
-        XCTAssertEqual(helper.percentage(), 0)
+        XCTAssertEqual(helper.percentage(), CGFloat(0))
     }
 
     func testPercentageForIn() {
         helper.side = .In
         helper.offset = 0
-        XCTAssertEqual(helper.percentage(), 0)
+        XCTAssertEqual(helper.percentage(), CGFloat(0))
 
         helper.offset = 75
-        XCTAssertEqual(helper.percentage(), 0.5)
+        XCTAssertEqual(helper.percentage(), CGFloat(0.5))
 
         helper.offset = 100
-        XCTAssertEqual(helper.percentage(), 1)
+        XCTAssertEqual(helper.percentage(), CGFloat(1))
 
         helper.offset = 125
-        XCTAssertEqual(helper.percentage(), 1)
+        XCTAssertEqual(helper.percentage(), CGFloat(1))
 
         helper.offset = 1000
-        XCTAssertEqual(helper.percentage(), 1)
+        XCTAssertEqual(helper.percentage(), CGFloat(1))
     }
 
     func testPercentageForOut() {
         helper.side = .Out
         helper.offset = 0
-        XCTAssertEqual(helper.percentage(), 1)
+        XCTAssertEqual(helper.percentage(), CGFloat(1))
 
         helper.offset = 75
-        XCTAssertEqual(helper.percentage(), 1)
+        XCTAssertEqual(helper.percentage(), CGFloat(1))
 
         helper.offset = 100
-        XCTAssertEqual(helper.percentage(), 1)
+        XCTAssertEqual(helper.percentage(), CGFloat(1))
 
         helper.offset = 125
-        XCTAssertEqual(helper.percentage(), 0.5)
+        XCTAssertEqual(helper.percentage(), CGFloat(0.5))
 
         helper.offset = 150
-        XCTAssertEqual(helper.percentage(), 0)
+        XCTAssertEqual(helper.percentage(), CGFloat(0))
 
         helper.offset = 1000
-        XCTAssertEqual(helper.percentage(), 0)
+        XCTAssertEqual(helper.percentage(), CGFloat(0))
     }
 
     func testReversePercentage() {
@@ -105,12 +105,12 @@ class ScrollHelperTests: XCTestCase {
 
     func testSideParamInPercentage() {
         helper.offset = 125
-        XCTAssertEqual(helper.percentage(), 0.5)
-        XCTAssertEqual(helper.percentage(.Any), 0.5)
-        XCTAssertEqual(helper.percentage(.Out), 0.5)
+        XCTAssertEqual(helper.percentage(), CGFloat(0.5))
+        XCTAssertEqual(helper.percentage(.Any), CGFloat(0.5))
+        XCTAssertEqual(helper.percentage(.Out), CGFloat(0.5))
 
-        XCTAssertEqual(helper.percentage(.In), 1)
-        XCTAssertEqual(helper.reversePercentage(.In), 0)
+        XCTAssertEqual(helper.percentage(.In), CGFloat(1))
+        XCTAssertEqual(helper.reversePercentage(.In), CGFloat(0))
     }
 
     func testSideTriggerDistance() {
@@ -132,7 +132,7 @@ class ScrollHelperTests: XCTestCase {
     func testScrollDirections() {
         helper.offset = 10
         helper.offset = 11
-        XCTAssertEqual(helper.previousOffset, 10)
+        XCTAssertEqual(helper.previousOffset, CGFloat(10))
 
         XCTAssertEqual(helper.scrollDirection(), ScrollHelper.Direction.Ascending, "Scroll direction should be ascending")
 
